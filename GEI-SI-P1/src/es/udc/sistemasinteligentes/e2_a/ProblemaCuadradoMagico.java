@@ -3,7 +3,6 @@ package es.udc.sistemasinteligentes.e2_a;
 import es.udc.sistemasinteligentes.Accion;
 import es.udc.sistemasinteligentes.Estado;
 import es.udc.sistemasinteligentes.ProblemaBusqueda;
-import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
 
 import java.util.ArrayList;
 
@@ -12,19 +11,29 @@ import static java.lang.Math.pow;
 public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public static class EstadoCuadradoMagico extends Estado{
 
-        private int[][] board;
+        private final int[][] board;
         int size;
 
-
+        //Constructor por defecto
         public EstadoCuadradoMagico(int[][] board) {
             this.board = board;
             this.size = board.length;
-
+        }
+        //Constructor de copia profunda para que no se cambie el estado inicial
+        public EstadoCuadradoMagico(EstadoCuadradoMagico otro) {
+            int size = otro.size;
+            this.size = size;
+            // Copia profunda de la matriz
+            this.board = new int[size][size];
+            for (int i = 0; i < size; i++) {
+                System.arraycopy(otro.board[i], 0, this.board[i], 0, size);
+            }
         }
 
         public EstadoCuadradoMagico InsertarNumero (int numero, int fila, int columna){
-            board[fila][columna] = numero;
-            return new EstadoCuadradoMagico(board);
+            EstadoCuadradoMagico copyestate = new EstadoCuadradoMagico(this);
+            copyestate.board[fila][columna] = numero;
+            return new EstadoCuadradoMagico(copyestate.board);
         }
 
         @Override
@@ -105,25 +114,23 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     @Override
     public boolean esMeta(Estado es){
         EstadoCuadradoMagico s = (EstadoCuadradoMagico)es;
-        int size = s.size;
-        int sum_col = 0;
-        int sum_row = 0;
-        int sum_d1 = 0;
-        int sum_d2 = 0;
+        int size = s.size, sum_col, sum_row, sum_d1 = 0, sum_d2 = 0;
+
         int sumaMagica = size * ((int)pow(size,2) + 1) / 2;
 
         for (int i = 0; i < size; i++) {
             sum_d1 += s.board[i][i];
             sum_d2 += s.board[i][size-i-1];
+            sum_col = 0;
+            sum_row = 0;
             for (int j = 0; j < size; j++) {
                sum_col += s.board[i][j];
                sum_row += s.board[j][i];
             }
-            if (sum_col != sumaMagica || sum_row != sumaMagica
-                || sum_d1 != sumaMagica || sum_d2 != sumaMagica)
+            if (sum_col != sumaMagica || sum_row != sumaMagica)
                 return false;
         }
-        return true;
+        return sum_d1 == sumaMagica && sum_d2 == sumaMagica;
     }
 
     @Override
@@ -134,8 +141,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if(s.board[i][j] == 0){
-                    for (int n = 1; n < size; n++){
+                if(s.board[i][j] == 0){//o es diferente a los numeros que ya habia
+                    for (int n = 1; n < (int)pow(size,2); n++){
                         Accion accion = new AccionCuadradoMagico(n, i, j);
                         if (accion.esAplicable(es))
                             accAL.add(accion);
