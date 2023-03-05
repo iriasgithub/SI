@@ -1,4 +1,4 @@
-package es.udc.sistemasinteligentes.e2_a;
+package es.udc.sistemasinteligentes.e2_b;
 
 import es.udc.sistemasinteligentes.Accion;
 import es.udc.sistemasinteligentes.Estado;
@@ -51,7 +51,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         public boolean equals(Object o){
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            ProblemaCuadradoMagico.EstadoCuadradoMagico that = (ProblemaCuadradoMagico.EstadoCuadradoMagico) o;
+            EstadoCuadradoMagico that = (EstadoCuadradoMagico) o;
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if(this.board[i][j] != that.board[i][j])
@@ -142,7 +142,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if(s.board[i][j] == 0){//o es diferente a los numeros que ya habia
-                    for (int n = 1; n <= (int)pow(size,2); n++){
+                    for (int n = 1; n < (int)pow(size,2); n++){
                         Accion accion = new AccionCuadradoMagico(n, i, j);
                         if (accion.esAplicable(es))
                             accAL.add(accion);
