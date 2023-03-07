@@ -1,6 +1,7 @@
 package es.udc.sistemasinteligentes.e1_b;
 
 import es.udc.sistemasinteligentes.*;
+import es.udc.sistemasinteligentes.e2_b.NodoInformado;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -9,6 +10,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
 
     public Estrategia4() {
     }
+    public ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p){return null;}
 
     public Estado soluciona_ej(ProblemaBusqueda p){return null;}
 

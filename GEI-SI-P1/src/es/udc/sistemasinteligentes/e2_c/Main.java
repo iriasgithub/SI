@@ -1,6 +1,8 @@
-package es.udc.sistemasinteligentes.e2_b;
+package es.udc.sistemasinteligentes.e2_c;
 
-import es.udc.sistemasinteligentes.*;
+import es.udc.sistemasinteligentes.EstrategiaBusqueda;
+import es.udc.sistemasinteligentes.Nodo;
+import es.udc.sistemasinteligentes.ProblemaBusqueda;
 
 import java.util.ArrayList;
 
@@ -11,22 +13,18 @@ public class Main {
         inicial[0][0] = 4;
         inicial[0][1] = 9;
         inicial[0][2] = 2;
-
         inicial[1][0] = 3;
         inicial[1][1] = 5;
         inicial[1][2] = 0;
-
         inicial[2][0] = 0;
         inicial[2][1] = 1;
         inicial[2][2] = 0;
 
-
         ProblemaCuadradoMagico.EstadoCuadradoMagico estadoInicial = new ProblemaCuadradoMagico.EstadoCuadradoMagico(inicial);
         ProblemaBusqueda cuadradoMagico = new ProblemaCuadradoMagico(estadoInicial);
-        Heuristica heuristicaCuadradoMagico = new HeuristicaCuadradoMagico();
 
-        EstrategiaBusquedaInformada buscador = new A_Estrella();
-        ArrayList<NodoInformado> sol = buscador.soluciona(cuadradoMagico, heuristicaCuadradoMagico);
+        EstrategiaBusqueda buscador = new BackTracking();
+        ArrayList<Nodo> sol = buscador.soluciona(cuadradoMagico);
 
         System.out.println("Reconstruyendo solución con BÚSQUEDA EN PROFUNDIDAD:\n");
         for (int i = 0; i < sol.size(); i++){
@@ -34,6 +32,7 @@ public class Main {
                 System.out.print(sol.get(i).getEstado().toString() + "  " + (char)8595 + "\n");
             else
                 System.out.print(sol.get(i).getEstado().toString() + " \n");
+
         }
 
     }

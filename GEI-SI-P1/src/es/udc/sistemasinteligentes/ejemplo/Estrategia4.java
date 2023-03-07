@@ -1,13 +1,16 @@
 package es.udc.sistemasinteligentes.ejemplo;
 
 import es.udc.sistemasinteligentes.*;
+import es.udc.sistemasinteligentes.e2_b.NodoInformado;
 
 import java.util.ArrayList;
 
 public class Estrategia4 implements EstrategiaBusqueda {
 
+
     public Estrategia4() {
     }
+    public ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p) {return null;}
 
     @Override
     public ArrayList<Nodo> soluciona (ProblemaBusqueda p){return new ArrayList<>();}

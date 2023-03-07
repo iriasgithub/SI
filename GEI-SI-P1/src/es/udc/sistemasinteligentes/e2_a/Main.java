@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         int[][] inicial = new int[3][3];
         inicial[0][0] = 4;
-        inicial[0][1] = 0;
+        inicial[0][1] = 9;
         inicial[0][2] = 2;
-        inicial[1][0] = 0;
-        inicial[1][1] = 0;
+        inicial[1][0] = 3;
+        inicial[1][1] = 5;
         inicial[1][2] = 0;
         inicial[2][0] = 0;
         inicial[2][1] = 1;

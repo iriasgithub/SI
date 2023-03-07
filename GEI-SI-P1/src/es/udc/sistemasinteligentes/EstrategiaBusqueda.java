@@ -1,5 +1,7 @@
 package es.udc.sistemasinteligentes;
 
+import es.udc.sistemasinteligentes.e2_b.NodoInformado;
+
 import java.util.ArrayList;
 
 public interface EstrategiaBusqueda {
@@ -10,5 +12,9 @@ public interface EstrategiaBusqueda {
      */
     public abstract ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception;
     public abstract Estado soluciona_ej(ProblemaBusqueda p) throws Exception;
+
+    public abstract ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p) throws Exception;
+
+
 
 }

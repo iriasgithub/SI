@@ -1,4 +1,4 @@
-package es.udc.sistemasinteligentes.e2_b;
+package es.udc.sistemasinteligentes.e2_c;
 
 import es.udc.sistemasinteligentes.Accion;
 import es.udc.sistemasinteligentes.Estado;
@@ -11,16 +11,8 @@ import static java.lang.Math.pow;
 public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public static class EstadoCuadradoMagico extends Estado{
 
-        int[][] board;
+        private final int[][] board;
         int size;
-
-        public int[][] getBoard() {
-            return board;
-        }
-
-        public int getSize() {
-            return size;
-        }
 
         //Constructor por defecto
         public EstadoCuadradoMagico(int[][] board) {
@@ -98,6 +90,9 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         public boolean esAplicable(Estado es) {
             EstadoCuadradoMagico s = (EstadoCuadradoMagico)es;
             int size = s.size;
+            int sumaMagica = size * ((int)pow(size,2) + 1) / 2;
+
+            int sum_col = 0, sum_row = 0, sum_d1 = 0, sum_d2 = 0;
             //if (valor < 1 || valor < size) return false; NO hace falta esta precondición, se controla en el met acciones
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -105,7 +100,16 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
                         return false;
                 }
             }
-            return true;
+            for (int i = 0; i < size; i++) {
+                //Verificando fila
+                sum_row += s.board[fila][i];
+                //Verificando columna
+                sum_col += s.board[i][columna];
+                //Verificando diagonales
+                sum_d1 += s.board[i][i];
+                sum_d2 += s.board[i][size-i-1];
+            }
+            return sum_row <= sumaMagica && sum_col <= sumaMagica && sum_d1 <= sumaMagica && sum_d2 <= sumaMagica;
         }
         @Override
         public Estado aplicaA(Estado es){
