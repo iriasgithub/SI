@@ -41,7 +41,7 @@ public class BackTracking implements EstrategiaBusqueda {
         }
         return solucion;
     }
-    public ArrayList<Nodo> sucesores (Nodo n, ProblemaBusqueda p){
+    /*public ArrayList<Nodo> sucesores (Nodo n, ProblemaBusqueda p){
         ArrayList<Nodo> sucesores = new ArrayList<>(); //Array donde guardaremos los sucesores del nodo meta
         Accion[] accDisponible = p.acciones(n.getEstado()); //Lista de acciones disponibles para el estado del nodo
         for (Accion acc: accDisponible){
@@ -50,41 +50,47 @@ public class BackTracking implements EstrategiaBusqueda {
         }
         return sucesores;
 
+    }*/
+
+    public Nodo sucesores (ArrayList<Nodo> E, Nodo n, ProblemaBusqueda p){
+        Nodo nodoMeta = null;
+        ProblemaCuadradoMagico.EstadoCuadradoMagico es = (ProblemaCuadradoMagico.EstadoCuadradoMagico)n.getEstado();
+        if(p.esMeta(es)) nodoMeta = n;
+        for (Nodo Ne : E){
+            if (Ne.getEstado().equals(n.getEstado())) {
+                return null;
+            }
+        }
+        if(es.NoTieneSucesores()){
+            nodoMeta = null;
+        }
+        Accion[] accDisponible = p.acciones(n.getEstado()); //Lista de acciones disponibles para el estado del nodo
+        E.add(n);
+        for (Accion acc: accDisponible){
+            Estado res = p.result(n.getEstado(),acc);
+            Nodo newNodo = new Nodo(res,n,acc);
+            nodoMeta = sucesores(E,newNodo,p);
+            if (nodoMeta != null)
+                break;
+        }
+        return nodoMeta;
+
     }
 
     @Override
     public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception {
         int nodosExpandidos = 0;
         int nodosCreados = 0;
-        ArrayList<Nodo> sucesores;
         ArrayList<Nodo> explorados = new ArrayList<>();
-        Stack<Nodo> frontera = new Stack<>();
+        Nodo nodoMeta = null;
 
         Estado estadoActual = p.getEstadoInicial();
         Nodo nodoActual = new Nodo(estadoActual, null, null);
         nodosCreados ++;
-        frontera.add(nodoActual);
 
-        while (!frontera.isEmpty()) {
-            nodoActual = frontera.pop();
-            nodosExpandidos ++;
-            estadoActual = nodoActual.getEstado();
-            if (p.esMeta(estadoActual)) {
-                System.out.println("Nodos creados: " + nodosCreados);
-                System.out.println("Nodos expandidos: " + nodosExpandidos);
-                return reconstruye_sol(nodoActual);
-            }
-            else {
-                explorados.add(nodoActual);
-                sucesores = sucesores(nodoActual, p);
-                //Mirar de cambiar: es muy ineficiente!
-                for (int i = 0; i < sucesores.size(); i++) {
-                    nodosCreados++;
-                }
-            }
-            introduce_F(explorados, sucesores, frontera);
-        }
-        throw new Exception("No se ha hallado solución\n");
+        if((nodoMeta = sucesores(explorados,nodoActual,p)) == null)
+            throw new Exception("No se ha hallado solución\n");
+        else return reconstruye_sol(nodoMeta);
 
     }
 

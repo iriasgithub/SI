@@ -36,6 +36,16 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
             return new EstadoCuadradoMagico(copyestate.board);
         }
 
+        public boolean NoTieneSucesores (){
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if(board[i][j] != 0)
+                        return false;
+                }
+            }
+            return true;
+        }
+
         @Override
         public String toString(){
             StringBuilder out = new StringBuilder();
