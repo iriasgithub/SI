@@ -8,9 +8,6 @@ import java.util.PriorityQueue;
 public class A_Estrella implements EstrategiaBusquedaInformada {
     public ArrayList<Nodo> soluciona (ProblemaBusqueda p) {return null;}
 
-    public Estado soluciona_ej(ProblemaBusqueda p) {
-        return null;
-    }
     void introduce_F (ArrayList<NodoInformado> E, ArrayList<NodoInformado> H, PriorityQueue<NodoInformado> F, Heuristica h){
         boolean introduce;
         boolean posible_remove;
@@ -19,7 +16,6 @@ public class A_Estrella implements EstrategiaBusquedaInformada {
         for (NodoInformado Nh : H) {
             for (NodoInformado Ne : E){
                 if (Nh.getEstado().equals(Ne.getEstado())) {
-                    introduce = false;
                     break;
                 }
             }

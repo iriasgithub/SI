@@ -9,29 +9,20 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        int[][] inicial = new int[3][3];
-        inicial[0][0] = 4;
-        inicial[0][1] = 0;
-        inicial[0][2] = 2;
-        inicial[1][0] = 0;
-        inicial[1][1] = 0;
-        inicial[1][2] = 0;
-        inicial[2][0] = 0;
-        inicial[2][1] = 1;
-        inicial[2][2] = 0;
+        int[][] inicial = {{4,9,2},{3,5,0},{0,1,0}};
 
         ProblemaCuadradoMagico.EstadoCuadradoMagico estadoInicial = new ProblemaCuadradoMagico.EstadoCuadradoMagico(inicial);
         ProblemaBusqueda cuadradoMagico = new ProblemaCuadradoMagico(estadoInicial);
 
         EstrategiaBusqueda buscador = new BackTracking();
-        ArrayList<Nodo> sol = buscador.soluciona(cuadradoMagico);
+        Nodo[] sol = buscador.soluciona(cuadradoMagico);
 
         System.out.println("Reconstruyendo solución con BÚSQUEDA EN PROFUNDIDAD:\n");
-        for (int i = 0; i < sol.size(); i++){
-            if (i != sol.size() - 1)
-                System.out.print(sol.get(i).getEstado().toString() + "  " + (char)8595 + "\n");
+        for (int i = 0; i < sol.length; i++){
+            if (i != sol.length - 1)
+                System.out.print(sol[i].getEstado().toString() + "  " + (char)8595 + "\n");
             else
-                System.out.print(sol.get(i).getEstado().toString() + " \n");
+                System.out.print(sol[i].getEstado().toString() + " \n");
 
         }
 

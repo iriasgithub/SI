@@ -32,14 +32,14 @@ public class BackTracking implements EstrategiaBusqueda {
         }
     }
 
-    public ArrayList<Nodo> reconstruye_sol (Nodo nMeta){
+    public Nodo[] reconstruye_sol (Nodo nMeta){
         ArrayList<Nodo> solucion = new ArrayList<>();
         Nodo a = nMeta;
         while (a!=null){
             solucion.add(0, a);
             a = a.getPadre();
         }
-        return solucion;
+        return solucion.toArray(new Nodo[0]);
     }
     /*public ArrayList<Nodo> sucesores (Nodo n, ProblemaBusqueda p){
         ArrayList<Nodo> sucesores = new ArrayList<>(); //Array donde guardaremos los sucesores del nodo meta
@@ -78,7 +78,7 @@ public class BackTracking implements EstrategiaBusqueda {
     }
 
     @Override
-    public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception {
+    public Nodo[] soluciona(ProblemaBusqueda p) throws Exception {
         int nodosExpandidos = 0;
         int nodosCreados = 0;
         ArrayList<Nodo> explorados = new ArrayList<>();

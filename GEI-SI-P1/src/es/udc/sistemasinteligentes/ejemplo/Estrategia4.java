@@ -13,7 +13,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
     public ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p) {return null;}
 
     @Override
-    public ArrayList<Nodo> soluciona (ProblemaBusqueda p){return new ArrayList<>();}
+    public Nodo[] soluciona (ProblemaBusqueda p){return new Nodo[0];}
 
     @Override
     public Estado soluciona_ej(ProblemaBusqueda p) throws Exception {

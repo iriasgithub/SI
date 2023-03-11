@@ -9,22 +9,24 @@ public class Estrategia4 implements EstrategiaBusqueda {
 
     public Estrategia4() {
     }
-    public ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p) {return null;}
-
     public Estado soluciona_ej(ProblemaBusqueda p){return null;}
 
-    public ArrayList<Nodo> reconstruye_sol (Nodo nMeta){
+    public Nodo[] reconstruye_sol (Nodo nMeta){
         ArrayList<Nodo> solucion = new ArrayList<>(); //Array donde guardaremos la solucion
         Nodo a = nMeta;
-        while (a!=null){
-            solucion.add(0, a);
-            a = a.getPadre();
+        while (a!=null){ //Mientras el padre no sea nulo
+            solucion.add(0, a); //Vamos añadiendo el nodo
+            a = a.getPadre(); //Y convirtiendo el nodo en su padre
         }
-        return solucion;
+        /*Cuando se llama al método toArray() con un arreglo vacío como argumento, Java utiliza la clase java.lang.reflect.Array
+        para crear un nuevo arreglo con la misma cantidad de elementos que la colección. De esta manera, el método toArray()
+        puede devolver un arreglo de la longitud necesaria para almacenar todos los elementos de la colección, incluso si
+        ese arreglo se inicializó con una longitud de cero.*/
+        return solucion.toArray(new Nodo[0]);
     }
 
     @Override
-    public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception {
+    public Nodo[] soluciona (ProblemaBusqueda p) throws Exception {
         ArrayList<Estado> explorados = new ArrayList<Estado>();
         Estado estadoActual = p.getEstadoInicial();
         explorados.add(estadoActual);

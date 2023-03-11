@@ -1,17 +1,16 @@
 package es.udc.sistemasinteligentes.e1_b;
 
 import es.udc.sistemasinteligentes.*;
-import es.udc.sistemasinteligentes.e2_b.NodoInformado;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
-public class Estrategia4 implements EstrategiaBusqueda {
+public class BusquedaGrafo implements EstrategiaBusqueda {
 
-    public Estrategia4() {
+    public BusquedaGrafo() {
     }
-    public ArrayList<NodoInformado> soluciona_A_Estrella(ProblemaBusqueda p){return null;}
-
     public Estado soluciona_ej(ProblemaBusqueda p){return null;}
 
     void introduce_F (ArrayList<Nodo> E, ArrayList<Nodo> H, Stack<Nodo> F){
@@ -30,18 +29,18 @@ public class Estrategia4 implements EstrategiaBusqueda {
                     break;
                 }
             }
-            if (introduce) F.add(Nh);
+            if (introduce) F.push(Nh);
         }
     }
 
-    public ArrayList<Nodo> reconstruye_sol (Nodo nMeta){
+    public Nodo[] reconstruye_sol (Nodo nMeta){
         ArrayList<Nodo> solucion = new ArrayList<>(); //Array donde guardaremos la solucion
         Nodo a = nMeta;
         while (a!=null){
             solucion.add(0, a);
             a = a.getPadre();
         }
-        return solucion;
+        return solucion.toArray(new Nodo[0]);
     }
 
     public ArrayList<Nodo> sucesores (Nodo nMeta, ProblemaBusqueda p){
@@ -56,7 +55,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
     }
 
     @Override
-    public ArrayList<Nodo> soluciona(ProblemaBusqueda p) throws Exception {
+    public Nodo[] soluciona(ProblemaBusqueda p) throws Exception {
         ArrayList<Nodo> sucesores;
         ArrayList<Nodo> explorados = new ArrayList<>();
         Stack<Nodo> frontera = new Stack<>();
@@ -74,8 +73,8 @@ public class Estrategia4 implements EstrategiaBusqueda {
             else {
                 explorados.add(nodoActual);
                 sucesores = sucesores(nodoActual, p);
+                introduce_F(explorados, sucesores, frontera);
             }
-            introduce_F(explorados, sucesores, frontera);
         }
         throw new Exception("No se ha hallado solución\n");
 
