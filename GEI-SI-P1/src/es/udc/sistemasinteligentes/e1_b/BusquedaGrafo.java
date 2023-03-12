@@ -3,8 +3,6 @@ package es.udc.sistemasinteligentes.e1_b;
 import es.udc.sistemasinteligentes.*;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 public class BusquedaGrafo implements EstrategiaBusqueda {

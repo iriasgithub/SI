@@ -3,7 +3,6 @@ package es.udc.sistemasinteligentes.e2_b;
 import es.udc.sistemasinteligentes.Accion;
 import es.udc.sistemasinteligentes.Estado;
 import es.udc.sistemasinteligentes.Heuristica;
-import es.udc.sistemasinteligentes.Nodo;
 
 public class NodoInformado implements Comparable<NodoInformado>{
 

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class A_Estrella implements EstrategiaBusquedaInformada {
-    public ArrayList<Nodo> soluciona (ProblemaBusqueda p) {return null;}
-
     void introduce_F (ArrayList<NodoInformado> E, ArrayList<NodoInformado> H, PriorityQueue<NodoInformado> F, Heuristica h){
         boolean introduce;
         boolean posible_remove;

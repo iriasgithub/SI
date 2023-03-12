@@ -6,8 +6,8 @@ import es.udc.sistemasinteligentes.ProblemaBusqueda;
 
 public class ProblemaAspiradora extends ProblemaBusqueda {
     public static class EstadoAspiradora extends Estado {
-        public enum PosicionRobot {IZQ, DER};
-        public enum PosicionBasura {AMBAS, DER, IZQ, NINGUNA};
+        public enum PosicionRobot {IZQ, DER}
+        public enum PosicionBasura {AMBAS, DER, IZQ, NINGUNA}
 
         private PosicionRobot posicionRobot;
         private PosicionBasura posicionBasura;
@@ -42,7 +42,7 @@ public class ProblemaAspiradora extends ProblemaBusqueda {
     }
 
     public static class AccionAspiradora extends Accion{
-        public enum Tipo {IZQ, DER, ASP};
+        public enum Tipo {IZQ, DER, ASP}
 
         private Tipo tipo;
 

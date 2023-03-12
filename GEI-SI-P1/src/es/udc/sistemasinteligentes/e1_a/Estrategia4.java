@@ -1,7 +1,6 @@
 package es.udc.sistemasinteligentes.e1_a;
 
 import es.udc.sistemasinteligentes.*;
-import es.udc.sistemasinteligentes.e2_b.NodoInformado;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
 
     @Override
     public Nodo[] soluciona (ProblemaBusqueda p) throws Exception {
-        ArrayList<Estado> explorados = new ArrayList<Estado>();
+        ArrayList<Estado> explorados = new ArrayList<>();
         Estado estadoActual = p.getEstadoInicial();
         explorados.add(estadoActual);
         Nodo nodoActual = new Nodo(estadoActual, null, null); //Creamos el nodo incial
@@ -57,7 +56,7 @@ public class Estrategia4 implements EstrategiaBusqueda {
             }
             if (!modificado) throw new Exception("No se ha podido encontrar una solución");
         }
-        System.out.println((i++) + " - FIN - " + estadoActual);
+        System.out.println(" - FIN - " + estadoActual);
         return reconstruye_sol(nodoActual);
     }
 }

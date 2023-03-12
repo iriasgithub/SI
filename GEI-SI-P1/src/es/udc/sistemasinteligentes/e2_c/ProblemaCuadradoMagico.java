@@ -12,7 +12,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public static class EstadoCuadradoMagico extends Estado{
 
         private final int[][] board;
-        int size;
+
+        private final int size;
 
         //Constructor por defecto
         public EstadoCuadradoMagico(int[][] board) {
